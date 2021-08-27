@@ -27,3 +27,4 @@ const pokemon = {
       speed: 150
     }
   }
+  module.exports = pokemon
