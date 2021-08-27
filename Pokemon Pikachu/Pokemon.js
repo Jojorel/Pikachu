@@ -12,29 +12,56 @@ function imprimir(pokemon) {
     const tipoPokemon = primeiraLetraMaiuscula(pokemon.types[0])
     const habilidade = primeiraLetraMaiuscula(pokemon.ability)
     const preEvolucao = (pokemon) => {
-        if (pokemon.preEvolution.length == 0){
+        if (pokemon.preEvolution.length == 0) {
             return ""
         }
-        else { const preEvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.preEvolution)
-            
-            return preEvolucaoComMaiusculo}
-}
+        else {
+            const preEvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.preEvolution)
+
+            return preEvolucaoComMaiusculo
+        }
+    }
     const evolucaoAtual = (pokemon) => {
-return pokemon.name.toUpperCase()
+        return pokemon.name.toUpperCase()
     }
     const evolucao = (pokemon) => {
-        if (pokemon.evolution.length == 0){
+        if (pokemon.evolution.length == 0) {
             return ""
         }
-        else { const EvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.evolution)
-            
-            return EvolucaoComMaiusculo}
+        else {
+            const EvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.evolution)
+
+            return EvolucaoComMaiusculo
+        }    
+    }
+
+    //const hpAtributos = (pokemon) => pokemon.attributes.hp
+    const Atributos = (pokemon) => {
+            let Hp = pokemon.attributes.hp
+            let Attack = pokemon.attributes.attack
+            let Defense = pokemon.attributes.defense
+            let SpecialAttack = pokemon.attributes.specialAttack
+            let SpecialDefense = pokemon.attributes.specialDefense
+            let Speed = pokemon.attributes.speed
+           
+        return (
+            console.log(`HP: ${Hp}`),
+            console.log(`ATK: ${Attack} SpATK: ${SpecialAttack}`),
+            console.log(`DEF: ${Defense} SpDEF: ${SpecialDefense}`),
+            console.log(`SPEED: ${Speed}`)
+        )
     }
 
     console.log(`Nome: ${nomePokemon} - Tipo: ${tipoPokemon}`)
     console.log(`Habilidade: ${habilidade}\n`)
-    console.log(`Linha de evolução: ${preEvolucao(pokemon)} >> ${evolucaoAtual(pokemon)} >> ${evolucao(pokemon)}`)
-    console.log()
+    console.log(`Linha de evolução: ${preEvolucao(pokemon)} >> ${evolucaoAtual(pokemon)} >> ${evolucao(pokemon)} \n`)
+    console.log(`Atributos: \n\n`)
+    Atributos(pokemon)
+    console.log("Ataques: \n\n" )
+    console.log(`Lv 5 - ${primeiraLetraMaiuscula(pokemon.moves[0].name)}`)
+    console.log(`Lv 9 - ${primeiraLetraMaiuscula(pokemon.moves[3].name)}`)
+    console.log(`Lv 20 - ${primeiraLetraMaiuscula(pokemon.moves[1].name)}`)
+    console.log(`Lv 50 - ${primeiraLetraMaiuscula(pokemon.moves[2].name)}`)
 }
 imprimir(Pikachu)
 
