@@ -10,7 +10,6 @@ function primeiraLetraMaiuscula(palavra) {
 
 function imprimir(pokemon) {
   const nomePokemon = primeiraLetraMaiuscula(pokemon.name);
-  //   const tipoPokemon = primeiraLetraMaiuscula(pokemon.types[0]);
   const tipoPokemon = (pokemon) => {
     let tipos = [];
     for (let i = 0; i < pokemon.types.length; i++) {
@@ -40,7 +39,6 @@ function imprimir(pokemon) {
       return "";
     } else {
       const EvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.evolution);
-
       return EvolucaoComMaiusculo;
     }
   };
@@ -62,6 +60,20 @@ function imprimir(pokemon) {
     );
   };
 
+  const levels = (pokemon) => {
+    let tudo = {
+      name: "",
+      lv: "",
+    };
+    let tudoArray = [];
+    for (let i = 0; i < pokemon.moves.length; i++) {
+      tudo.lv += pokemon.moves[i].lv;
+      tudo.name += pokemon.moves[i].name;
+      console.log(tudoArray);
+    }
+    return (tudoArray = tudo);
+  };
+
   console.log(`Nome: ${nomePokemon} - Tipo: ${tipoPokemon(Pikachu)}`);
   console.log(`Habilidade: ${habilidade}\n`);
   console.log(
@@ -76,6 +88,7 @@ function imprimir(pokemon) {
   console.log(`Lv 9 - ${primeiraLetraMaiuscula(pokemon.moves[3].name)}`);
   console.log(`Lv 20 - ${primeiraLetraMaiuscula(pokemon.moves[1].name)}`);
   console.log(`Lv 50 - ${primeiraLetraMaiuscula(pokemon.moves[2].name)}`);
+  console.log(levels(Pikachu));
 }
 imprimir(Pikachu);
 
@@ -97,3 +110,21 @@ imprimir(Pikachu);
 //     Lv 9 - Thunder Wave
 //     Lv 20 - Thunderbolt
 //     Lv 50 - Thunder
+
+// function isEmpty (x) {
+//   if (!x) { // caso seja undefined
+//       return true
+//   }
+//   if (x === '' || x === null){ //caso seja uma variavel vazia
+//       return true
+//   }
+//   if(Array.isArray(x)) { // caso seja um array vazio
+//       if (x[0] === '' || x[0] === undefined) {
+//           return true
+//       }
+//   }
+//   if (JSON.stringify(x) === '{}') { // caso seja um objeto vazio
+//       return true
+//   }
+//   return false
+// }
