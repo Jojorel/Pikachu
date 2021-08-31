@@ -1,94 +1,93 @@
 const Pikachu = require("./Pikachu");
 
 function primeiraLetraMaiuscula(palavra) {
-  const palavraSemEspaco = palavra;
+    const palavraSemEspaco = palavra;
 
-  return (
-    palavraSemEspaco[0].toUpperCase() + palavraSemEspaco.slice(1).toLowerCase()
-  );
+    return (
+        palavraSemEspaco[0].toUpperCase() + palavraSemEspaco.slice(1).toLowerCase()
+    );
 }
 
 function imprimir(pokemon) {
-  const nomePokemon = primeiraLetraMaiuscula(pokemon.name);
-  const tipoPokemon = (pokemon) => {
-    let tipos = [];
-    for (let i = 0; i < pokemon.types.length; i++) {
-      tipos += `${primeiraLetraMaiuscula(pokemon.types[i])} `;
-    }
-    return tipos;
-  };
-
-  const habilidade = primeiraLetraMaiuscula(pokemon.ability);
-
-  const preEvolucao = (pokemon) => {
-    if (pokemon.preEvolution === null) {
-      return "";
-    } else {
-      const preEvolucaoComMaiusculo = primeiraLetraMaiuscula(
-        pokemon.preEvolution
-      );
-
-      return `${preEvolucaoComMaiusculo} >>`;
-    }
-  };
-  const evolucaoAtual = (pokemon) => {
-    return `${pokemon.name.toUpperCase()} >>`;
-  };
-  const evolucao = (pokemon) => {
-    if (pokemon.evolution === null) {
-      return "";
-    } else {
-      const EvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.evolution);
-      return EvolucaoComMaiusculo;
-    }
-  };
-
-  //const hpAtributos = (pokemon) => pokemon.attributes.hp
-  const Atributos = (pokemon) => {
-    let Hp = pokemon.attributes.hp;
-    let Attack = pokemon.attributes.attack;
-    let Defense = pokemon.attributes.defense;
-    let SpecialAttack = pokemon.attributes.specialAttack;
-    let SpecialDefense = pokemon.attributes.specialDefense;
-    let Speed = pokemon.attributes.speed;
-
-    return (
-      console.log(`HP: ${Hp}`),
-      console.log(`ATK: ${Attack} SpATK: ${SpecialAttack}`),
-      console.log(`DEF: ${Defense} SpDEF: ${SpecialDefense}`),
-      console.log(`SPEED: ${Speed}`)
-    );
-  };
-
-  const levels = (pokemon) => {
-    let tudo = {
-      name: "",
-      lv: "",
+    const nomePokemon = primeiraLetraMaiuscula(pokemon.name);
+    const tipoPokemon = (pokemon) => {
+        let tipos = [];
+        for (let i = 0; i < pokemon.types.length; i++) {
+            tipos += `${primeiraLetraMaiuscula(pokemon.types[i])} `;
+        }
+        return tipos;
     };
-    let tudoArray = [];
-    for (let i = 0; i < pokemon.moves.length; i++) {
-      tudo.lv += pokemon.moves[i].lv;
-      tudo.name += pokemon.moves[i].name;
-      console.log(tudoArray);
-    }
-    return (tudoArray = tudo);
-  };
 
-  console.log(`Nome: ${nomePokemon} - Tipo: ${tipoPokemon(Pikachu)}`);
-  console.log(`Habilidade: ${habilidade}\n`);
-  console.log(
-    `Linha de evolução: ${preEvolucao(pokemon)} ${evolucaoAtual(
-      pokemon
-    )} ${evolucao(pokemon)} \n`
-  );
-  console.log(`Atributos: \n\n`);
-  Atributos(pokemon);
-  console.log("Ataques: \n\n");
-  console.log(`Lv 5 - ${primeiraLetraMaiuscula(pokemon.moves[0].name)}`);
-  console.log(`Lv 9 - ${primeiraLetraMaiuscula(pokemon.moves[3].name)}`);
-  console.log(`Lv 20 - ${primeiraLetraMaiuscula(pokemon.moves[1].name)}`);
-  console.log(`Lv 50 - ${primeiraLetraMaiuscula(pokemon.moves[2].name)}`);
-  console.log(levels(Pikachu));
+    const habilidade = primeiraLetraMaiuscula(pokemon.ability);
+
+    const preEvolucao = (pokemon) => {
+        if (pokemon.preEvolution === null) {
+            return "";
+        } else {
+            const preEvolucaoComMaiusculo = primeiraLetraMaiuscula(
+                pokemon.preEvolution
+            );
+
+            return `${preEvolucaoComMaiusculo} >>`;
+        }
+    };
+    const evolucaoAtual = (pokemon) => {
+        return `${pokemon.name.toUpperCase()} >>`;
+    };
+    const evolucao = (pokemon) => {
+        if (pokemon.evolution === null) {
+            return "";
+        } else {
+            const EvolucaoComMaiusculo = primeiraLetraMaiuscula(pokemon.evolution);
+            return EvolucaoComMaiusculo;
+        }
+    };
+
+    //const hpAtributos = (pokemon) => pokemon.attributes.hp
+    const Atributos = (pokemon) => {
+        let Hp = pokemon.attributes.hp;
+        let Attack = pokemon.attributes.attack;
+        let Defense = pokemon.attributes.defense;
+        let SpecialAttack = pokemon.attributes.specialAttack;
+        let SpecialDefense = pokemon.attributes.specialDefense;
+        let Speed = pokemon.attributes.speed;
+
+        return (
+            console.log(`HP: ${Hp}`),
+            console.log(`ATK: ${Attack} SpATK: ${SpecialAttack}`),
+            console.log(`DEF: ${Defense} SpDEF: ${SpecialDefense}`),
+            console.log(`SPEED: ${Speed}`)
+        );
+    };
+
+    const levels = (pokemon) => {
+        let moves = pokemon.moves
+        let niveis = []
+        console.log("\nAtaques: \n\n");
+        for (let i = 0; i < moves.length; i++) {
+            let novoNivel = { nome: moves[i].name, level: moves[i].lv }
+            niveis.push(novoNivel)
+        }
+        niveis.sort((a, b) => {
+            return a.level - b.level;
+        })
+        for (let i = 0; i < moves.length; i++) {
+            console.log(`Lv ${niveis[i].level} - ${primeiraLetraMaiuscula(niveis[i].nome)}`)
+        }
+
+    };
+
+
+    console.log(`Nome: ${nomePokemon} - Tipo: ${tipoPokemon(Pikachu)}`);
+    console.log(`Habilidade: ${habilidade}\n`);
+    console.log(
+        `Linha de evolução: ${preEvolucao(pokemon)} ${evolucaoAtual(
+            pokemon
+        )} ${evolucao(pokemon)} \n`
+    );
+    console.log(`Atributos: \n\n`);
+    Atributos(pokemon);
+    levels(Pikachu);
 }
 imprimir(Pikachu);
 
